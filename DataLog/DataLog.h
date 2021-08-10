@@ -7,13 +7,13 @@
 #include <share.h>
 #pragma warning(disable : 4996)
 
-#define BUFFER_MAX_LENGTH 65536
+//#define BUFFER_MAX_LENGTH 65536
 
 
 class CDataLog {
 
 public:
-	PBYTE bBuffer;
+	//PBYTE bBuffer;
 
 	CDataLog(PCHAR szLogFilePath);
 	~CDataLog();
@@ -32,7 +32,5 @@ private:
 	VOID CloseLogFile();
 
 	VOID __LogString(PCHAR szData);
-	VOID __LogEnter();
-	VOID __LogChar(PCHAR pbOneChar);
 	VOID __LogChar(CHAR cData);
 };
