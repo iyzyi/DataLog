@@ -43,17 +43,20 @@ VOID CDataLog::LogString(PCHAR szData) {
 }
 
 
-VOID CDataLog::LogFormatString(PCHAR buf, PCHAR format, ...) {
+VOID CDataLog::LogFormatString(DWORD dwDataLen, PCHAR format, ...) {
 	OpenLogFile();
+
+	PCHAR szData = new CHAR[dwDataLen + 16];
 
 	va_list args;
 	va_start(args, format);
-	vsprintf(buf, format, args);
+	vsprintf(szData, format, args);
 	va_end(args);
 
-	__LogString(buf);
+	__LogString(szData);
 
 	CloseLogFile();
+	delete[] szData;
 }
 
 
@@ -119,8 +122,7 @@ int main()
 	DWORD dwDataLen = strlen(szData);
 	m_DataLog.LogHexData(szPreString, (PBYTE)szData, dwDataLen);
 
-	CHAR temp[128] = { 0 };
-	m_DataLog.LogFormatString(temp, "\nHook %s\tAddress=%llx\tCurrent = %c\n\n", "SSL_ojbk", 0x7ffffffffb, 'P');
+	m_DataLog.LogFormatString(64, "\nHook %s\tAddress=%llx\tCurrent = %c\n\n", "SSL_ojbk", 0x7ffffffffb, 'P');
 
 	system("pause");
     return 0;

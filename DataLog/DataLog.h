@@ -17,7 +17,7 @@ public:
 	~CDataLog();
 
 	VOID LogString(PCHAR szData);
-	VOID LogFormatString(PCHAR buf, PCHAR szFormat, ...);
+	VOID LogFormatString(DWORD dwDataLen, PCHAR szFormat, ...);
 	VOID LogHexData(PCHAR szPreString, PBYTE pbData, DWORD dwDataLen);
 
 
