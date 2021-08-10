@@ -12,18 +12,18 @@ class CDataLog {
 
 public:
 	PBYTE bBuffer;
-	FILE* fpLog = NULL;
 
 	CDataLog(PCHAR szLogFilePath);
 	~CDataLog();
 
 	VOID LogString(PCHAR szData);
+	VOID LogFormatString(PCHAR buf, PCHAR szFormat, ...);
 	VOID LogHexData(PCHAR szPreString, PBYTE pbData, DWORD dwDataLen);
 
 
 private:
-	//FILE *fpLog = NULL;
-	//CRITICAL_SECTION m_cs;
+	FILE *fpLog = NULL;
+	CRITICAL_SECTION m_cs;
 	CHAR szLogFilePath[MAX_PATH];
 
 	VOID OpenLogFile();
